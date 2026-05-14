@@ -107,11 +107,3 @@ npm run start:dist
 ## Aprendizados
 
 Neste projeto foram praticados conceitos de criação de APIs REST com Fastify, configuração de rotas, uso de TypeScript no backend, retorno de respostas JSON e organização inicial de um servidor Node.js.
-
-## Melhorias futuras
-
-- Separar dados, rotas e controllers em arquivos próprios.
-- Adicionar mais pilotos e equipes.
-- Criar testes automatizados.
-- Usar variáveis de ambiente para configurar a porta.
-- Conectar a API a um banco de dados.
