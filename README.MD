@@ -1,101 +1,117 @@
-<div align="center">
-  <img src="./.github/assets/1.png" alt="Logo" height="200">
-  <h1 align="center"><strong>Formula 1 REST API</strong></h1>
-  <p align="center">
-    API REST com dados de times e pilotos da Fórmula 1,<br>desenvolvida durante o bootcamp da <b>DIO (Digital Innovation One)</b>.
-  </p>
-</div>
+# Formula 1 API
 
-<br />
+API desenvolvida no bootcamp da DIO para praticar backend com Node.js, TypeScript e Fastify. O projeto disponibiliza dados simples de equipes e pilotos de Fórmula 1, com rotas para listar informações e buscar um piloto pelo ID.
 
-## Sobre o Projeto
+## Funcionalidades
 
-Este projeto foi desenvolvido como parte do bootcamp da **DIO (Digital Innovation One)** e tem como objetivo praticar a criação de APIs REST com **Node.js** e **TypeScript**, utilizando o framework **Fastify**.
+- Listar equipes de Fórmula 1.
+- Listar pilotos cadastrados.
+- Buscar piloto pelo ID.
+- Retornar erro quando o piloto não for encontrado.
+- Permitir requisições externas com CORS.
 
-A API fornece dados sobre times e pilotos da Fórmula 1, permitindo listar equipes, consultar pilotos e buscar um piloto específico por ID.
+## Tecnologias
 
----
+- Node.js
+- TypeScript
+- Fastify
+- @fastify/cors
+- TSX
+- TSUP
 
-## Tecnologias Utilizadas
+## Como executar
 
-- [Node.js](https://nodejs.org/) — Ambiente de execução JavaScript
-- [TypeScript](https://www.typescriptlang.org/) — Superset tipado do JavaScript
-- [Fastify](https://fastify.dev/) — Framework web rápido e eficiente para Node.js
-- [@fastify/cors](https://github.com/fastify/fastify-cors) — Plugin de CORS para o Fastify
-- [tsx](https://www.npmjs.com/package/tsx) — Execução de TypeScript diretamente no Node.js
-- [tsup](https://www.npmjs.com/package/tsup) — Bundler para TypeScript
-
----
-
-## Endpoints da API
-
-O servidor sobe na porta **3333** por padrão.
-
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/teams` | Retorna todos os times de F1 |
-| GET | `/drivers` | Retorna todos os pilotos |
-| GET | `/drivers/:id` | Retorna um piloto pelo ID |
-
-### Exemplos de resposta
-
-**GET /teams**
-```json
-{
-  "teams": [
-    { "id": 1, "name": "McLaren", "base": "Woking, United Kingdom" },
-    { "id": 2, "name": "Mercedes", "base": "Brackley, United Kingdom" }
-  ]
-}
-```
-
-**GET /drivers/1**
-```json
-{
-  "driver": { "id": 1, "name": "Max Verstappen", "team": "Red Bull Racing" }
-}
-```
-
----
-
-## Como Executar
-
-### Pré-requisitos
-
-- [Node.js v20+](https://nodejs.org/)
-- [NPM v10+](https://nodejs.org/)
-
-### Instalação
+Instale as dependências:
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/node-formula-1
-
-# Acesse a pasta do projeto
-cd node-formula-1
-
-# Instale as dependências
 npm install
 ```
 
-### Scripts disponíveis
+Execute em desenvolvimento:
 
 ```bash
-# Executa em modo de desenvolvimento
 npm run start:dev
+```
 
-# Executa com hot reload (reinicia ao salvar arquivos)
-npm run start:watch
+A API roda em:
 
-# Compila o projeto para JavaScript
+```txt
+http://localhost:3333
+```
+
+## Rotas
+
+```http
+GET /teams
+```
+
+```http
+GET /drivers
+```
+
+```http
+GET /drivers/:id
+```
+
+Exemplo:
+
+```txt
+http://localhost:3333/drivers/1
+```
+
+## Exemplo de resposta
+
+```json
+{
+  "driver": {
+    "id": 1,
+    "name": "Max Verstappen",
+    "team": "Red Bull Racing"
+  }
+}
+```
+
+Caso o piloto não seja encontrado:
+
+```json
+{
+  "message": "Driver Not Found"
+}
+```
+
+## Scripts
+
+```json
+{
+  "dist": "tsup src",
+  "start:dev": "tsx --env-file=.env src/server.ts",
+  "start:watch": "tsx watch --env-file=.env  src/server.ts",
+  "start:dist": "npm run dist && node dist/server.js"
+}
+```
+
+## Build
+
+Para gerar a versão compilada:
+
+```bash
 npm run dist
+```
 
-# Compila e executa a versão de produção
+Para compilar e executar:
+
+```bash
 npm run start:dist
 ```
 
----
+## Aprendizados
 
-## Bootcamp DIO
+Neste projeto foram praticados conceitos de criação de APIs REST com Fastify, configuração de rotas, uso de TypeScript no backend, retorno de respostas JSON e organização inicial de um servidor Node.js.
 
-Este projeto faz parte do currículo do bootcamp da **[DIO — Digital Innovation One](https://www.dio.me/)**, plataforma de educação em tecnologia que conecta desenvolvedores a oportunidades no mercado.
+## Melhorias futuras
+
+- Separar dados, rotas e controllers em arquivos próprios.
+- Adicionar mais pilotos e equipes.
+- Criar testes automatizados.
+- Usar variáveis de ambiente para configurar a porta.
+- Conectar a API a um banco de dados.
